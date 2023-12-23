@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository;
 import org.springframework.web.reactive.function.server.ServerResponse;
 
 @Repository
-public interface StoreRepository extends ReactiveMongoRepository<StoreEntity, String>, ServerResponse {
+public interface StoreRepository extends ReactiveMongoRepository<StoreEntity, String> {
 }
