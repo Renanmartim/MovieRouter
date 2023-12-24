@@ -4,9 +4,5 @@ server:
 spring:
   data:
     mongodb:
-      host: localhost
-      port: 27017
-      database: Movies
-      username: admin
-      password: admin
+      uri: mongodb://localhost:27017/Movies
 

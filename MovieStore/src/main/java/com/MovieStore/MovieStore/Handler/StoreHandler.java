@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.server.ServerRequest;
 import org.springframework.web.reactive.function.server.ServerResponse;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @Component
@@ -21,7 +22,14 @@ public class StoreHandler {
 
         return serverRequest.bodyToMono(StoreEntity.class)
                 .flatMap(storeRepository::save)
-                .flatMap(ServerResponse.status(HttpStatus.CREATED)::bodyValue);
+                .then(ServerResponse.status(HttpStatus.CREATED).build());
 
+    }
+
+    public Mono<ServerResponse> getAll() {
+
+        Flux<StoreEntity> allMovies = storeRepository.findAll();
+
+        return ServerResponse.ok().body(allMovies, StoreEntity.class);
     }
 }

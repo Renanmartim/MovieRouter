@@ -15,6 +15,7 @@ public class StoreRouter {
 
         return route()
                 .POST("/v1/add", storeHandler::addMovie)
+                .GET("/v1/get", request -> storeHandler.getAll())
                 .build();
     }
 }
